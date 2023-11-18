@@ -48,11 +48,11 @@ Configuration                                     *trailing-shade-configuration*
 
 `g:trailing_shade_cterm`          color offset for terminal colors.
                                 The range for this value is defined
-								by |tui-colors| (typically within `0..255`).
+                                by |tui-colors| (typically within `0..255`).
 
 `g:trailing_shade_gui`            color offset for GUI colors.
                                 The format for this value is defined
-								by |gui-colors| (typically it's `#RRGGBB`).
+                                by |gui-colors| (typically it's `#RRGGBB`).
 
 `g:trailing_shade_after_cursor`   while in |Insert| mode, highlight trailing
                                 whitespace occurring only after the cursor.
