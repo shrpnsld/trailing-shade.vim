@@ -1,0 +1,71 @@
+*trailing-shade* highlights trailing whitespace with a shade of background color
+
+    888                    d8b 888 d8b
+    888                    Y8P 888 Y8P
+    888                        888
+    888888 888d888 8888b.  888 888 888 88888b.   .d88b.
+    888    888P"      "88b 888 888 888 888 "88b d88P"88b
+    888    888    .d888888 888 888 888 888  888 888  888
+    Y88b.  888    888  888 888 888 888 888  888 Y88b 888
+     "Y888 888    "Y888888 888 888 888 888  888  "Y88888
+                                                     888
+                                       888      Y8b d88P      888
+                                       888       "Y88P"       888
+                                       888                    888
+                              .d8888b  88888b.   8888b.   .d88888  .d88b.
+                              88K      888 "88b     "88b d88" 888 d8P  Y8b
+                              "Y8888b. 888  888 .d888888 888  888 88888888
+                                   X88 888  888 888  888 Y88b 888 Y8b.
+                               88888P' 888  888 "Y888888  "Y88888  "Y8888
+
+                https://github.com/shrpnsld/trailing-shade.vim
+
+==============================================================================
+Contents                                               *trailing-shade-contents*
+
+        Intro.................................... |trailing-shade-intro|
+        Configuration............................ |trailing-shade-usage|
+        Commands.............................. |trailing-shade-commands|
+        Credits................................ |trailing-shade-credits|
+        License................................ |trailing-shade-license|
+
+==============================================================================
+Intro                                                     *trailing-shade-intro*
+
+Highlight trailing whitespace with a shade of the current background color, so
+it always looks natural, regardless of a color scheme in use. With a dark
+|background|, the highlighting has a lighter shade, and with a light |background|,
+the highlighting has a darker shade.
+
+The offsets of `ctermbg` and `guibg` colors in the `Normal` highlight group are used
+as a shade of the background color.
+
+By default, highlighting works only with listed buffers (|buflisted|), so
+trailing whitespace won't be visible in help files or some plugin buffers.
+
+==============================================================================
+Configuration                                     *trailing-shade-configuration*
+
+`g:trailing_shade_cterm`          color offset for terminal colors.
+                                The range for this value is defined
+								by |tui-colors| (typically within `0..255`).
+
+`g:trailing_shade_gui`            color offset for GUI colors.
+                                The format for this value is defined
+								by |gui-colors| (typically it's `#RRGGBB`).
+
+`g:trailing_shade_after_cursor`   while in |Insert| mode, highlight trailing
+                                whitespace occurring only after the cursor.
+
+==============================================================================
+Commands                                               *trailing-shade-commands*
+
+`:TrailingShadeOn` - turn on trailing-shade for all buffers.
+`:TrailingShadeOff` - turn off trailing-shade for all buffers.
+`:TrailingShadeOnHere` - turn on trailing-shade for current buffer.
+`:TrailingShadeOffHere` - turn off trailing-shade for current buffer.
+
+==============================================================================
+License                                                 *trailing-shade-license*
+
+MIT License. Copyright Anton Diehtiar 2023.
