@@ -111,23 +111,33 @@ function! s:GetHighlightValue(name, mode, component, reverse_component, default)
 	return value
 endfunction
 
-function! s:ColorOffset(normal, offset)
+function! s:ColorOffset(normal, offset, white)
 	if &background ==# 'dark'
-		return a:normal + a:offset
+		let shade = a:normal + a:offset
+		if shade > a:white " in case color scheme ignores 'background' option
+			let shade = a:normal - a:offset
+		endif
+
+		return shade
 	else
-		return a:normal - a:offset
+		let shade = a:normal - a:offset
+		if shade < 0 " in case color scheme ignores 'background' option
+			let shade = a:normal + a:offset
+		endif
+
+		return shade
 	endif
 endfunction
 
 function! s:AddTrailingShadeHighlight()
 	let terminal_color = s:GetHighlightValue('Normal', 'cterm', 'bg', 'fg', 'none')
 	if terminal_color !=# 'none'
-		let terminal_color = s:ColorOffset(terminal_color, g:trailing_shade_cterm)
+		let terminal_color = s:ColorOffset(terminal_color, g:trailing_shade_cterm, 255)
 	endif
 
 	let gui_color = s:GetHighlightValue('Normal', 'gui', 'bg', 'fg', 'none')
 	if gui_color !=# 'none'
-		let gui_color = s:ColorOffset('0x'.strpart(gui_color, 1), g:trailing_shade_gui)
+		let gui_color = s:ColorOffset('0x'.strpart(gui_color, 1), g:trailing_shade_gui, 0xFFFFFF)
 	endif
 
 	execute 'highlight! TrailingShade ctermfg=none ctermbg='..terminal_color..' guifg=none guibg='..printf('#%x', gui_color)
