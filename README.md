@@ -1,18 +1,38 @@
 # trailing-shade.vim
 
-Highlight trailing whitespace with a shade of the current background color, so it always looks natural, regardless of a color scheme in use. With a dark background (`:h background`), the highlighting has a lighter shade, and with a light background, the highlighting has a darker shade.
+Highlight trailing whitespace with a shade of the current background color, so it always looks natural, regardless of a color scheme you're using. With a dark background (`:h background`), the highlighting has a lighter shade, and with a light background, the highlighting has a darker shade.
 
 The offsets of `ctermbg` and `guibg` colors in the `Normal` highlight group are used as a shade of the background color.
 
 By default, highlighting works only with listed buffers (`:h buflisted`), so trailing whitespace won't be visible in help files or some plugin buffers.
 
+## Installation
+
+Use string `'shrpnsld/trailing-shade.vim'` with your plugin manager and you're good to go.
+
 ## Confuguration
 
-`g:trailing_shade_cterm` – offset for terminal colors. The range for this value is defined by *tui-colors* (`:h tui-colors`), typically within `0..255`.
+### Set color offsets
 
-`g:trailing_shade_gui` – offset for GUI colors. The format for this value is defined by *gui-colors* (`:h gui-colors`), typically it's `#RRGGBB`.
+Shade offset for TUI colors (`:h tui-colors`). The range for this option is typically within `0..255`.
 
-`g:trailing_shade_after_cursor` – while in *Insert* mode, highlight trailing whitespace occurring only after the cursor.
+```vim
+let g:trailing_shade_cterm = 8
+```
+
+Shade offset for GUI colors (`:h gui-colors`). The format for this option is `0xRRGGBB`.
+
+```vim
+let g:trailing_shade_gui = 0x363636
+```
+
+### Other options
+
+While in *Insert* mode, highlight trailing whitespace occurring only aflter the cursor.
+
+```vim
+let g:trailing_shade_after_cursor = 1
+```
 
 ## Commands
 
