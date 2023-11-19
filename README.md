@@ -6,6 +6,12 @@ The offsets of `ctermbg` and `guibg` colors in the `Normal` highlight group are 
 
 By default, highlighting works only with listed buffers (`:h buflisted`), so trailing whitespace won't be visible in help files or some plugin buffers.
 
+### How it looks
+
+<image src="screenshots/catppuccin-mocha.png" with="400" height="200"> <image src="screenshots/rose-pine-dawn.png" with="400" height="200">
+<image src="screenshots/kanawaga-wave.png" with="400" height="200"> <image src="screenshots/kanawaga-lotus.png" with="400" height="200">
+<image src="screenshots/nord.png" with="400" height="200"> <image src="screenshots/tokyonight-day.png" with="400" height="200">
+
 ## Installation
 
 Use string `'shrpnsld/trailing-shade.vim'` with your plugin manager and you're good to go.
