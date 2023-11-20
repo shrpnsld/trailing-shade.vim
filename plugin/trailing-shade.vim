@@ -111,7 +111,6 @@ endfunction
 
 function! s:MatchTrailingWhitespaceInWindows(windows)
 	for window_id in a:windows
-		echom 'window_id = '..window_id
 		call win_execute(window_id, 'call <SID>MatchTrailingWhitespace()')
 	endfor
 endfunction
