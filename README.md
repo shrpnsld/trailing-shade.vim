@@ -42,11 +42,11 @@ let g:trailing_shade_after_cursor = 1
 
 ## Commands
 
-`:TrailingShadeOn` – turn on trailing-shade for all buffers.
+`:TrailingShadeOn` – turn on for all buffers.
 
-`:TrailingShadeOff` – turn off trailing-shade for all buffers.
+`:TrailingShadeOff` – turn off for all buffers.
 
-`:TrailingShadeOnHere` – turn on trailing-shade for current buffer.
+`:TrailingShadeOnHere` – turn on for current buffer.
 
-`:TrailingShadeOffHere` – turn off trailing-shade for current buffer.
+`:TrailingShadeOffHere` – turn off for current buffer.
 
