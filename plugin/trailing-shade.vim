@@ -7,6 +7,16 @@ endif
 "
 " Utils
 
+function! s:ABuf()
+	let abuf = expand('<abuf>')
+	if abuf ==# ''
+		let buffer_number = 0
+	else
+		let buffer_number = str2nr(abuf)
+	end
+	return buffer_number != 0 ? buffer_number : bufnr()
+endfunction
+
 function! s:MatchTrailingWhitespace()
 	match TrailingShade /\s\+$/
 endfunction
@@ -134,14 +144,14 @@ endfunction
 function! s:On()
 	augroup TrailingShadeGlobal
 		autocmd!
-		autocmd BufAdd * call s:OnHere(str2nr(expand('<abuf>')), getbufinfo(str2nr(expand('<abuf>')))[0].windows)
-		autocmd BufDelete * call s:OffHere(str2nr(expand('<abuf>')), getbufinfo(str2nr(expand('<abuf>')))[0].windows)
+		autocmd BufAdd * call s:OnHere(s:ABuf('<abuf>'), getbufinfo(s:ABuf('<abuf>'))[0].windows)
+		autocmd BufDelete * call s:OffHere(s:ABuf('<abuf>'), getbufinfo(s:ABuf('<abuf>'))[0].windows)
 
 		" Note to future self:
 		" with 'WinNew' '<abuf>' is not a buffer in a new window, it is the
 		" buffer that was active before the window was created.
 		" so this code introduces more critical bugs, than fixes non critical ones.
-		" autocmd WinNew * call s:MatchTrailingWhitespaceInWindows(getbufinfo(str2nr(expand('<abuf>')))[0].windows)
+		" autocmd WinNew * call s:MatchTrailingWhitespaceInWindows(getbufinfo(s:ABuf('<abuf>'))[0].windows)
 	augroup END
 
 	for info in getbufinfo()
