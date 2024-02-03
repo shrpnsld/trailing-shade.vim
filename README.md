@@ -34,7 +34,7 @@ let g:trailing_shade_gui = 0x363636
 
 ### Other options
 
-While in *Insert* mode, highlight trailing whitespace occurring only aflter the cursor.
+While in *Insert* mode, highlight trailing whitespace occurring only after the cursor.
 
 ```vim
 let g:trailing_shade_after_cursor = 1
