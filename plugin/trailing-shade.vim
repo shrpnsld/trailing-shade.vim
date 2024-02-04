@@ -144,8 +144,8 @@ endfunction
 function! s:On()
 	augroup TrailingShadeGlobal
 		autocmd!
-		autocmd BufAdd * call s:OnHere(s:ABuf('<abuf>'), getbufinfo(s:ABuf('<abuf>'))[0].windows)
-		autocmd BufDelete * call s:OffHere(s:ABuf('<abuf>'), getbufinfo(s:ABuf('<abuf>'))[0].windows)
+		autocmd BufAdd * call s:OnHere(s:ABuf(), getbufinfo(s:ABuf())[0].windows)
+		autocmd BufDelete * call s:OffHere(s:ABuf(), getbufinfo(s:ABuf())[0].windows)
 
 		" Note to future self:
 		" with 'WinNew' '<abuf>' is not a buffer in a new window, it is the
