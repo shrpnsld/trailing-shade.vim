@@ -173,6 +173,7 @@ endfunction
 
 augroup TrailingShadeAddHighlight
 	autocmd!
+	autocmd SourcePost * call s:AddHighlight()
 	autocmd ColorScheme * call s:AddHighlight()
 augroup END
 
