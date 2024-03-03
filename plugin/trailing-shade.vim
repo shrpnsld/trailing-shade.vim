@@ -45,21 +45,52 @@ function! s:GetHighlightValue(name, mode, component, reverse_component, default)
 	return value
 endfunction
 
-function! s:ColorOffset(normal, offset, white)
+function! s:NeutralBrightest(color)
+	let color = printf('%x', a:color)
+	let largest = str2nr(max([color[0:1], color[2:3], color[4:5]]))
+	return str2nr(largest..largest..largest, 16)
+endfunction
+
+function! s:IsDarkBackground(normal, offset, white)
 	if &background ==# 'dark'
-		let shade = a:normal + a:offset
-		if shade > a:white " in case color scheme ignores 'background' option
-			let shade = a:normal - a:offset
+		let result = a:normal + a:offset
+		if result > a:white " in case color scheme ignores 'background' option
+			return 0
+		else
+			return 1
 		endif
-
-		return shade
 	else
-		let shade = a:normal - a:offset
-		if shade < 0 " in case color scheme ignores 'background' option
-			let shade = a:normal + a:offset
+		let result = a:normal - a:offset
+		if result < 0 " in case color scheme ignores 'background' option
+			return 1
+		else
+			return 0
 		endif
+	endif
+endfunction
 
-		return shade
+function! s:MakeLighterShade(base, offset)
+	return a:base + a:offset
+endfunction
+
+function! s:MakeDarkerShade(base, offset)
+	let padding = s:NeutralBrightest(a:offset)
+	return a:base - 2 * padding + a:offset
+endfunction
+
+function! s:ColorShadeCterm(normal, offset)
+	if s:IsDarkBackground(a:normal, a:offset, 255)
+		return a:normal + a:offset
+	else
+		return a:normal - a:offset
+	endif
+endfunction
+
+function! s:ColorShadeGui(normal, offset)
+	if s:IsDarkBackground(a:normal, a:offset, 0xffffff)
+		return s:MakeLighterShade(a:normal, a:offset)
+	else
+		return s:MakeDarkerShade(a:normal, a:offset)
 	endif
 endfunction
 
@@ -90,12 +121,12 @@ endif
 function! s:AddHighlight()
 	let terminal_color = s:GetHighlightValue('Normal', 'cterm', 'bg', 'fg', 'none')
 	if terminal_color !=# 'none'
-		let terminal_color = s:ColorOffset(terminal_color, g:trailing_shade_cterm, 255)
+		let terminal_color = s:ColorShadeCterm(terminal_color, g:trailing_shade_cterm)
 	endif
 
 	let gui_color = s:GetHighlightValue('Normal', 'gui', 'bg', 'fg', 'none')
 	if gui_color !=# 'none'
-		let gui_color = s:ColorOffset('0x'.strpart(gui_color, 1), g:trailing_shade_gui, 0xFFFFFF)
+		let gui_color = s:ColorShadeGui('0x'.strpart(gui_color, 1), g:trailing_shade_gui)
 	endif
 
 	execute 'highlight! TrailingShade ctermfg=none ctermbg='..terminal_color..' guifg=none guibg='..printf('#%x', gui_color)
