@@ -56,6 +56,18 @@ Configuration                                     *trailing-shade-configuration*
 `g:trailing_shade_after_cursor`   while in |Insert| mode, highlight trailing
                                 whitespace occurring only after the cursor.
 
+------------------------------------------------------------------------------
+
+When using lazy.nvim, these options should be set within the `init` function
+when listing trailing-shade inside the lazy.nvim setup:
+>
+  require("lazy").setup {
+      { "shrpnsld/trailing-shade",
+          init = function()
+              vim.g.trailing_shade_gui = 0x563636,
+          end },
+  }
+<
 ==============================================================================
 Commands                                               *trailing-shade-commands*
 

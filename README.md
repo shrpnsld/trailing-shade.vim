@@ -40,6 +40,19 @@ While in *Insert* mode, highlight trailing whitespace occurring only after the c
 let g:trailing_shade_after_cursor = 1
 ```
 
+### Note for [lazy.nvim](https://github.com/folke/lazy.nvim) users
+
+These options should be set within the `init` function when listing trailing-shade inside the lazy.nvim setup:
+
+```lua
+require("lazy").setup {
+	{ "shrpnsld/ocd-save.vim",
+		init = function()
+			vim.g.ocd_save_message = vim.v.null,
+		end },
+}
+```
+
 ## Commands
 
 `:TrailingShadeOn` – turn on for all buffers.
