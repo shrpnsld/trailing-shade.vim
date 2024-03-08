@@ -46,10 +46,10 @@ These options should be set within the `init` function when listing trailing-sha
 
 ```lua
 require("lazy").setup {
-	{ "shrpnsld/ocd-save.vim",
-		init = function()
-			vim.g.ocd_save_message = vim.v.null,
-		end },
+    { "shrpnsld/trailing-shade.vim",
+        init = function()
+            vim.g.trailing_shade_gui = 0x563636,
+        end },
 }
 ```
 
