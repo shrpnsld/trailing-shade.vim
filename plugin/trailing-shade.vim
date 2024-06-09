@@ -72,6 +72,10 @@ function! s:IsDarkBackground(normal, offset, white)
 	endif
 endfunction
 
+function! s:IsDarkColor(color)
+	return a:color < 0x808080
+endfunction
+
 function! s:MakeLighterShade(base, offset)
 	return a:base + a:offset
 endfunction
@@ -90,7 +94,7 @@ function! s:ColorShadeCterm(normal, offset)
 endfunction
 
 function! s:ColorShadeGui(normal, offset)
-	if s:IsDarkBackground(a:normal, a:offset, 0xffffff)
+	if s:IsDarkColor(a:normal)
 		return s:MakeLighterShade(a:normal, a:offset)
 	else
 		return s:MakeDarkerShade(a:normal, a:offset)
