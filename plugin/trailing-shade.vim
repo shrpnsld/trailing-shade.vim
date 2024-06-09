@@ -47,8 +47,11 @@ endfunction
 
 function! s:NeutralBrightest(color)
 	let color = printf('%x', a:color)
-	let largest = str2nr(max([color[0:1], color[2:3], color[4:5]]))
-	return str2nr(largest..largest..largest, 16)
+	let red = str2nr(color[0:1], 16)
+	let green = str2nr(color[2:3], 16)
+	let blue = str2nr(color[4:5], 16)
+	let largest_component = max([red, green, blue])
+	return str2nr(repeat(printf('%x', largest_component), 3), 16)
 endfunction
 
 function! s:IsDarkBackground(normal, offset, white)
