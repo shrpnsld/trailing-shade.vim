@@ -80,3 +80,5 @@ Commands                                               *trailing-shade-commands*
 License                                                 *trailing-shade-license*
 
 MIT License. Copyright Anton Diehtiar 2023.
+
+vim:tw=78:ts=8:sw=4:ft=help:norl:
