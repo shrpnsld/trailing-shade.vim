@@ -126,21 +126,21 @@ endif
 " Plugin
 
 function! s:AddHighlight()
-	let terminal_color = s:GetHighlightValue('Normal', 'cterm', 'bg', 'fg', 'none')
-	if terminal_color !=# 'none'
-		let terminal_color = s:GetHighlightValue('Normal', 'cterm', 'fg', 'bg', 'none')
+	let terminal_color = s:GetHighlightValue('Normal', 'cterm', 'bg', 'fg', 'NONE')
+	if terminal_color != 'NONE'
+		let terminal_color = s:GetHighlightValue('Normal', 'cterm', 'fg', 'bg', 'NONE')
 	endif
 
 	let terminal_color = s:ColorShadeCterm(terminal_color, g:trailing_shade_cterm)
 
-	let gui_color = s:GetHighlightValue('Normal', 'gui', 'bg', 'fg', 'none')
-	if gui_color ==# 'none'
-		let gui_color = s:GetHighlightValue('Normal', 'gui', 'fg', 'bg', 'none')
+	let gui_color = s:GetHighlightValue('Normal', 'gui', 'bg', 'fg', 'NONE')
+	if gui_color == 'NONE'
+		let gui_color = s:GetHighlightValue('Normal', 'gui', 'fg', 'bg', 'NONE')
 	endif
 
 	let gui_color = s:ColorShadeGui('0x'.strpart(gui_color, 1), g:trailing_shade_gui)
 
-	execute 'highlight! TrailingShade ctermfg=none ctermbg='..terminal_color..' guifg=none guibg='..printf('#%x', gui_color)
+	execute 'highlight! TrailingShade ctermfg=NONE ctermbg='..terminal_color..' guifg=NONE guibg='..printf('#%x', gui_color)
 endfunction
 
 function! s:AddBufferAutoCmds(buffer_number)
